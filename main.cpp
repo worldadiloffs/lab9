@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int multiply(int a, int b) {
@@ -125,6 +126,50 @@ void p9() {
     cout << endl;
 }
 
+int reverseNumber(int num, int rev = 0) {
+    if (num == 0) return rev;
+    return reverseNumber(num / 10, rev * 10 + num % 10);
+}
+
+bool isPalindrome(int num) {
+    if (num < 0) return false;
+    return num == reverseNumber(num);
+}
+
+void p10() {
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    if (isPalindrome(n)) {
+        cout << "True" << endl;
+    }
+    else {
+        cout << "False" << endl;
+    }
+}
+
+bool isPrimeHelper(int num, int divisor) {
+    if (divisor > sqrt(num)) return true;
+    if (num % divisor == 0) return false;
+    return isPrimeHelper(num, divisor + 1);
+}
+
+bool isPrime(int num) {
+    if (num <= 1) return false;
+    return isPrimeHelper(num, 2);
+}
+void p11() {
+    int number;
+    cout << "Enter a number: ";
+    cin >> number;
+
+    if (isPrime(number)) {
+        cout << number << " is a prime number." << endl;
+    } else {
+        cout << number << " is not a prime number." << endl;
+    }
+}
 
 
 int main() {
@@ -137,5 +182,6 @@ int main() {
     // p7();
     // p8();
     // p9();
+    p10();
     return 0;
 }
